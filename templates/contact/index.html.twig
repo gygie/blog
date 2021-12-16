@@ -3,14 +3,14 @@
 {% block title %}Hello ContactController!{% endblock %}
 
 {% block body %}
+
 <style>
     .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 </style>
 
 
-
-   Holla there!!!!!!
+BIENVENUE DANS L'ECOLE NE FONCTIONNE PAS
     <nav>
         <ul>
 
@@ -25,9 +25,36 @@
             </li>
         </ul>
     </nav>
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/wamp64/www/blog/src/Controller/ContactController.php'|file_link(0) }}">src/Controller/ContactController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/wamp64/www/blog/templates/contact/index.html.twig'|file_link(0) }}">templates/contact/index.html.twig</a></code></li>
-    </ul>
+
+    <div class ="contact-container">
+
+
+
+        {% if article is defined and article is not null %}
+
+            <ul>
+                <li>Id: {{  article.Nom}}</li>
+                <li>Nom: {{ article.Slug }}</li>
+                <li>Slug: {{ article.Contenu }}</li>
+            </ul>
+
+        {% endif %}
+
+            <ul>
+
+                {% if articles is defined %}
+                {% for article in articles %}
+                <li>
+                    <a href="{{ path('article', {'id': article.id}) }}">
+                        Mes articles {{ article.Nom }}
+                    </a>
+                </li>
+
+            </ul>
+
+        {% endfor %}
+        {% endif %}
+        <a href="{{ path('contact_show') }}">Créer un article</a>
+    </div>
 
 {% endblock %}
